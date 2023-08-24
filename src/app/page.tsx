@@ -1,9 +1,12 @@
+import { serverClient } from "./_trpc/serverClient";
+
 import TodoList from "./_components/todolist";
 
-export default function Home() {
+export default async function Home() {
+  const todos = await serverClient.getTodos();
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <TodoList />
+      <TodoList initialTodos={todos}/>
     </main>
   );
 }
